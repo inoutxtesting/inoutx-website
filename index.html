@@ -7,11 +7,11 @@
   <title>INOUTX — AI-Based College Bus Entry, Exit and Monitoring System</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png" />
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts: Space Grotesk & Inter -->
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap"
     rel="stylesheet" />
   <!-- Material Symbols Icons -->
   <link
@@ -19,14 +19,16 @@
     rel="stylesheet" />
   <!-- Tailwind CSS CDN with plugins -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
   <!-- Tailwind Configuration -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+            heading: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['Inter', 'sans-serif'],
           },
           colors: {
             brand: {
@@ -59,13 +61,54 @@
   <!-- Custom Atmospheric Styles & Utility Classes -->
   <style>
     body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
       background-color: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+    }
+
+    button,
+    input,
+    select,
+    textarea,
+    optgroup {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    nav,
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    code,
+    kbd,
+    samp,
+    pre,
+    .font-mono {
+      font-family: 'Inter', sans-serif;
+    }
+
     .hero-sky-gradient {
       background: linear-gradient(180deg, #003377 0%, #004b9e 30%, #308ce7 65%, #6eb4f7 85%, #dff0ff 100%);
+    }
+
+    #hero-bg-video {
+      object-fit: cover;
+      pointer-events: none;
     }
 
     .glass-nav {
@@ -88,30 +131,6 @@
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.35);
     }
-
-.camera-3d {
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 24px;
-  background: linear-gradient(135deg, #eaf5ff, #d4e8ff);
-  box-shadow: 0 24px 60px rgba(0, 51, 119, 0.15);
-}
-
-.camera-3d iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border: 0;
-}
-
-.camera-3d p {
-  margin: 0;
-  padding: 12px 16px;
-  color: #003377;
-  font-size: 13px;
-  text-align: center;
-}
 
     /* Pulse animation dot */
     @keyframes pulse-dot {
@@ -146,7 +165,7 @@
   </style>
 </head>
 
-<body
+<body oncontextmenu="return false;"
   class="text-slate-800 antialiased bg-white min-h-screen flex flex-col m-0 p-0 selection:bg-brand-primary selection:text-white">
   <!-- BEGIN: Full Width Page Wrapper -->
   <div class="w-full min-h-screen flex flex-col">
@@ -157,23 +176,23 @@
     <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 pointer-events-none">
       <nav aria-label="Main Navigation"
         class="pointer-events-auto glass-nav rounded-full px-4 sm:px-6 py-2.5 shadow-glass flex items-center justify-between transition-all duration-300 max-w-6xl mx-auto">
-        <!-- Official INOUTX Logo & Institutional Title -->
-        <a aria-label="INOUTX Home" class="flex items-center space-x-3 shrink-0 group" href="#">
+        <!-- Official INOUTX Logo in Rounded Blue Gradient Badge -->
+        <a aria-label="INOUTX Home" class="flex items-center shrink-0 group" href="#">
           <div
-            class="h-11 px-2.5 py-1 rounded-2xl bg-brand-deep/5 group-hover:bg-brand-deep/10 transition-colors flex items-center">
-            <img alt="INOUTX official logo" class="h-9 sm:h-10 w-auto object-contain drop-shadow-xs" src="logo.png" />
+            class="flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#001938] via-[#002655] to-[#003377] border border-blue-400/30 shadow-xs transition-all duration-300 group-hover:shadow-md group-hover:border-sky-400/50">
+            <img alt="INOUTX official logo"
+              class="h-8 sm:h-9 md:h-10 w-auto object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
+              src="logo-footer-raw.png" />
           </div>
-
         </a>
 
         <!-- Desktop Navigation Links -->
         <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold text-slate-700">
-          <a class="hover:text-brand-primary transition-colors" href="#how-it-works">How It Works</a>
+          <a class="hover:text-brand-primary transition-colors" href="#about">About us</a>
           <a class="hover:text-brand-primary transition-colors" href="#workflow">Workflow</a>
           <a class="hover:text-brand-primary transition-colors" href="#features">Features</a>
-          <a class="hover:text-brand-primary transition-colors" href="#architecture">Architecture &amp; Verification</a>
           <a class="hover:text-brand-primary transition-colors" href="#tech-stack">Tech Stack</a>
-          <a class="hover:text-brand-primary transition-colors" href="#demo">Live Simulation</a>
+          <a class="hover:text-brand-primary transition-colors" href="#gallery">Gallery</a>
           <a class="hover:text-brand-primary transition-colors" href="#team">Team</a>
           <a class="hover:text-brand-primary transition-colors" href="#faq">FAQ</a>
         </div>
@@ -193,56 +212,77 @@
           </a>
           <!-- Primary CTA Button -->
           <a class="inline-flex items-center space-x-1.5 px-4 sm:px-5 py-2 rounded-full text-xs font-bold text-white bg-gradient-to-r from-brand-primary to-brand-cyan hover:from-brand-deep hover:to-brand-primary shadow-md transition-all active:scale-95"
-            href="#how-it-works">
-            <span>How It Works</span>
-            <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+            href="https://inoutx.zynix.us" rel="noopener noreferrer" target="_blank">
+            <span>Launch Project</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_outward</span>
           </a>
         </div>
       </nav>
     </header>
 
     <!-- ========================================== -->
-    <!-- 2. HERO SECTION (Full-Width Sky Gradient)  -->
+    <!-- 2. HERO SECTION (With Video Background)    -->
     <!-- ========================================== -->
-    <section
-      class="hero-sky-gradient relative px-5 pt-28 pb-16 sm:px-10 lg:px-14 sm:pt-36 sm:pb-24 text-white overflow-hidden w-full">
-      <!-- Ambient Lighting Orbs -->
-      <div class="absolute -top-24 -left-24 w-96 h-96 bg-sky-300/25 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute top-1/2 -right-20 w-96 h-96 bg-brand-deep/50 rounded-full blur-3xl pointer-events-none">
+    <section id="hero"
+      class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-center text-white overflow-hidden w-full px-5 sm:px-10 lg:px-14 pt-32 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 bg-[#004b9e]">
+
+      <!-- Muted Surveillance Video Background -->
+      <div class="absolute inset-0 w-full h-full overflow-hidden select-none pointer-events-none z-0">
+        <video id="hero-bg-video"
+          class="w-full h-full object-cover object-[78%_center] sm:object-[72%_center] lg:object-[82%_center]" autoplay
+          loop muted playsinline preload="auto">
+          <source src="gemini_generated_video_ecd4a320.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Light Blue Theme Gradient Overlays: Vibrant cerulean & sky blue tones that blend seamlessly with the natural daytime sky of the video -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[#00458f]/90 via-[#005fb8]/75 sm:via-[#0284c7]/50 md:via-[#38a4f7]/25 to-transparent">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#004b9e]/40 via-transparent to-[#003377]/40"></div>
+        <div
+          class="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-white via-white/30 to-transparent">
+        </div>
       </div>
 
-      <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <!-- Left Column: Project Identity & Innovation Value Prop -->
-        <div class="lg:col-span-7 flex flex-col items-start text-left">
-          <!-- Institutional Scope Pill -->
-
+      <div class="relative z-10 max-w-[1440px] w-full mx-auto">
+        <!-- Content Column: Aligned left, leaving the right open to highlight the live CCTV camera stream -->
+        <div class="max-w-2xl lg:max-w-3xl xl:max-w-[820px] flex flex-col items-start text-left">
 
           <!-- Main Heading -->
           <h1
-            class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] drop-shadow-sm">
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[76px] 2xl:text-[84px] font-bold tracking-tight text-white leading-[1.05] drop-shadow-md font-heading">
             Smarter Gates.<br />
-            <span class="text-sky-200">Safer Campuses.</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-sky-100 to-white">Safer
+              Campuses.</span>
           </h1>
 
           <!-- Supporting Heading -->
-          <h2 class="mt-3 text-lg sm:text-xl font-bold text-sky-100 tracking-wide">
+          <h2
+            class="mt-3.5 sm:mt-5 text-lg sm:text-xl lg:text-2xl 2xl:text-[25px] font-semibold text-sky-100 tracking-wide font-heading drop-shadow-sm">
             AI-Powered College Bus Entry &amp; Exit Monitoring
           </h2>
 
           <!-- Project Official Description -->
-          <p class="mt-4 text-sm sm:text-base text-blue-50/95 max-w-xl font-normal leading-relaxed drop-shadow-sm">
+          <p
+            class="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-blue-50/95 max-w-2xl font-normal leading-relaxed drop-shadow-sm">
             “INOUTX combines YOLO-based bus detection, vehicle tracking, number plate recognition, and virtual-line
             crossing logic to monitor registered college bus movements and maintain digital records.”
           </p>
 
           <!-- Primary & Secondary CTA Action Buttons -->
-          <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <a class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white text-brand-deep hover:bg-slate-50 text-xs sm:text-sm font-extrabold tracking-wide shadow-lg hover:shadow-xl transition-all active:scale-95"
-              href="#about">
-              <span class="material-symbols-outlined text-lg mr-2 text-brand-primary">info</span>
-              About INOUTX
+          <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+            <a class="inline-flex items-center justify-center px-7 py-4 rounded-full bg-white text-brand-deep hover:bg-slate-50 text-sm sm:text-base font-semibold tracking-wide shadow-lg hover:shadow-xl transition-all active:scale-95 group"
+              href="https://inoutx.zynix.us" target="_blank" rel="noopener noreferrer">
+              <svg
+                class="w-5 h-5 mr-2 text-brand-primary stroke-current fill-none transition-transform duration-200 group-hover:translate-x-0.5"
+                viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+              <span>INOUTX Login</span>
             </a>
-            <a class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold tracking-wide backdrop-blur-md border border-white/30 transition-all active:scale-95"
+            <a class="inline-flex items-center justify-center px-7 py-4 rounded-full bg-white/15 hover:bg-white/25 text-white text-sm sm:text-base font-semibold tracking-wide backdrop-blur-md border border-white/30 transition-all active:scale-95 shadow-sm"
               href="https://github.com/inoutxtesting/INOUTX." rel="noopener noreferrer" target="_blank">
               <svg class="w-4 h-4 mr-2 fill-current" viewbox="0 0 24 24">
                 <path clip-rule="evenodd"
@@ -254,57 +294,27 @@
           </div>
 
           <!-- Glassmorphic Capabilities Chips (College Bus Scope) -->
-          <div class="mt-8 flex flex-wrap gap-2.5 sm:gap-3">
+          <div class="mt-8 sm:mt-12 flex flex-wrap gap-2.5 sm:gap-3.5">
             <div
-              class="glass-chip rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-white flex items-center space-x-1.5">
-              <span class="material-symbols-outlined text-sky-200 text-sm">directions_bus</span>
+              class="glass-chip rounded-full px-4 py-2 text-xs sm:text-sm font-medium text-white flex items-center space-x-2 shadow-xs">
+              <span class="material-symbols-outlined text-sky-200 text-sm sm:text-base">directions_bus</span>
               <span>YOLOv8 College Bus Detection</span>
             </div>
             <div
-              class="glass-chip rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-white flex items-center space-x-1.5">
-              <span class="material-symbols-outlined text-sky-200 text-sm">timeline</span>
+              class="glass-chip rounded-full px-4 py-2 text-xs sm:text-sm font-medium text-white flex items-center space-x-2 shadow-xs">
+              <span class="material-symbols-outlined text-sky-200 text-sm sm:text-base">timeline</span>
               <span>ByteTrack Multi-Object Tracking</span>
             </div>
             <div
-              class="glass-chip rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-white flex items-center space-x-1.5">
-              <span class="material-symbols-outlined text-sky-200 text-sm">touch_app</span>
+              class="glass-chip rounded-full px-4 py-2 text-xs sm:text-sm font-medium text-white flex items-center space-x-2 shadow-xs">
+              <span class="material-symbols-outlined text-sky-200 text-sm sm:text-base">touch_app</span>
               <span>First Virtual Line Touch Logic</span>
             </div>
             <div
-              class="glass-chip rounded-full px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold text-white flex items-center space-x-1.5">
-              <span class="material-symbols-outlined text-sky-200 text-sm">cloud_done</span>
-              <span>MongoDB Atlas Fleet Verification</span>
+              class="glass-chip rounded-full px-4 py-2 text-xs sm:text-sm font-medium text-white flex items-center space-x-2 shadow-xs">
+              <span class="material-symbols-outlined text-sky-200 text-sm sm:text-base">database</span>
+              <span>PostgreSQL Relational Fleet Records</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive 3D Sketchfab Camera 12 Model Viewer -->
-        <div class="lg:col-span-5 flex flex-col items-center w-full">
-          <div class="w-full relative">
-            <!-- Ambient Blue Glow -->
-            <div class="absolute -inset-2 bg-sky-300/30 rounded-[34px] blur-xl pointer-events-none"></div>
-
-            <!-- Responsive 3D Camera Container with 4:3 Aspect Ratio, Subtle Blue Border, and Soft Shadow -->
-            <div class="camera-3d relative">
-              <iframe
-                title="INOUTX — Interactive 3D Security Camera Model (Illustration)"
-                src="https://sketchfab.com/models/f872df3288764694b230a2ccc3dc918d/embed?autospin=0.4&autostart=1&ui_theme=dark&ui_hint=2"
-                allow="autoplay; fullscreen; xr-spatial-tracking"
-                allowfullscreen
-                loading="lazy">
-              </iframe>
-              <p class="font-semibold text-brand-primary">Interactive 3D Security Camera (Rotate &amp; Zoom)</p>
-            </div>
-
-            <!-- Attribution & Explicit Clarification -->
-            <p class="mt-2.5 text-center text-xs text-slate-700/90 font-medium">
-              3D camera visual via <a class="font-bold text-brand-navy hover:underline"
-                href="https://sketchfab.com/3d-models/camera-12-f872df3288764694b230a2ccc3dc918d"
-                rel="noopener noreferrer" target="_blank">Sketchfab</a>.
-            </p>
-            <p class="mt-1 text-center text-[11px] text-slate-600/80 bg-white/40 rounded-lg p-1.5 border border-white/40">
-              <em>Note:</em> Illustrative 3D visualization representing campus CCTV positioning, not actual deployed hardware.
-            </p>
           </div>
         </div>
       </div>
@@ -315,8 +325,8 @@
     <!-- ========================================== -->
     <section class="py-20 sm:py-28 px-5 sm:px-12 bg-white relative border-b border-slate-100" id="about">
       <div class="max-w-6xl mx-auto">
-        <!-- Section Title & Narrative -->
-        <div class="text-center max-w-3xl mx-auto mb-14">
+        <!-- Section Title -->
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span
             class="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider text-brand-primary bg-blue-50 border border-blue-200 uppercase mb-3">
             About INOUTX
@@ -324,20 +334,55 @@
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-deep tracking-tight leading-tight">
             About the System
           </h2>
-          <div class="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed text-left sm:text-justify space-y-4 bg-slate-50/70 p-6 sm:p-8 rounded-3xl border border-slate-100">
-            <p>
-              IN/OUT X is an AI-Based College Transport Management System designed to automate and simplify college bus monitoring at KRCT and KRCE campuses. The system uses Artificial Intelligence, computer vision, YOLOv8 vehicle detection, vehicle tracking, and PaddleOCR-based number plate recognition to identify and verify registered college buses through live CCTV cameras. Its First Virtual Line Crossing Concept determines whether a bus is entering or exiting based on which configured virtual line it crosses first. MongoDB Atlas stores registered bus information and verified vehicle movement records, enabling centralized monitoring and efficient report management.
-            </p>
-            <p>
-              From a non-technical perspective, IN/OUT X reduces the need for manual vehicle monitoring and paper-based records, helping college authorities track bus movements more efficiently and reliably. By automating vehicle identification, entry and exit classification, and recordkeeping, the system saves time, reduces human error, and improves campus transport management. Combining intelligent automation with a user-friendly monitoring interface, IN/OUT X aims to provide a smarter, more organized, and dependable transportation monitoring solution for educational institutions.
-            </p>
-          </div>
-        </div>
-        <div class="flex justify-center mt-8">
-          <img src="logo.png" alt="INOUTX official logo" class="h-16 sm:h-20 w-auto object-contain drop-shadow-md rounded-2xl" />
         </div>
 
-       
+        <!-- Parallel Layout: Logo on Left & Paragraphs on Right -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <!-- Left Column: Official Logo Card -->
+          <div class="md:col-span-5 flex justify-center w-full">
+            <div class="w-full relative group max-w-md md:max-w-none">
+              <!-- Ambient Subtle Blue Glow -->
+              <div
+                class="absolute -inset-1.5 bg-gradient-to-r from-sky-400/20 to-brand-primary/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none">
+              </div>
+
+              <!-- Logo Display Card -->
+              <div style="background-color: #002655;"
+                class="relative p-8 sm:p-10 rounded-3xl  shadow-card-soft flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:shadow-glass">
+                <img src="logo-footer-raw.png" alt="INOUTX official logo"
+                  class="w-full max-w-[280px] sm:max-w-xs h-auto object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105" />
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: About Section Paragraphs -->
+          <div class="md:col-span-7">
+            <div
+              class="text-sm sm:text-base text-slate-600 leading-relaxed text-left sm:text-justify space-y-4 bg-slate-50/70 p-6 sm:p-8 lg:p-10 rounded-3xl border border-slate-100 shadow-xs">
+              <p>
+                INOUTX is an AI-Based College Transport Management System designed to automate and simplify college
+                bus monitoring at KRCT and KRCE campuses. The system uses Artificial Intelligence, computer vision,
+                YOLOv8 vehicle detection, vehicle tracking, and PaddleOCR-based number plate recognition to identify and
+                verify registered college buses through live CCTV cameras. Its First Virtual Line Crossing Concept
+                determines whether a bus is entering or exiting based on which configured virtual line it crosses first.
+                PostgreSQL stores registered bus information and verified vehicle movement records in structured
+                relational tables, enabling centralized monitoring, transactional data integrity, and efficient report
+                management.
+              </p>
+              <p>
+                From a non-technical perspective, INOUTX reduces the need for manual vehicle monitoring and
+                paper-based records, helping college authorities track bus movements more efficiently and reliably. By
+                automating vehicle identification, entry and exit classification, and recordkeeping, the system saves
+                time, reduces human error, and improves campus transport management. Combining intelligent automation
+                with a user-friendly monitoring interface, INOUTX aims to provide a smarter, more organized, and
+                dependable transportation monitoring solution for educational institutions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </section>
 
@@ -355,7 +400,7 @@
             System Workflow in 6 Connected Steps
           </h2>
           <p class="mt-3.5 text-sm sm:text-base text-slate-600 font-normal">
-            Each stage in the active Python pipeline carries an isolated computational responsibility.
+            How the INOUTX system tracks, verifies, and records college bus movements step by step.
           </p>
         </div>
 
@@ -370,20 +415,19 @@
                   class="w-10 h-10 rounded-2xl bg-sky-100 text-brand-primary flex items-center justify-center font-bold text-sm">
                   01</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Camera Input</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Ingests live RTSP camera streams or pre-recorded test video inputs using OpenCV
-                (<code>cv2.VideoCapture</code>) configured with a 2-frame buffer to prevent streaming latency.
+                Captures live video from KRCT and KRCE college gate cameras or uses recorded videos for testing.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Dual Gates: KRCT Gate 01 &amp; KRCE Gate 01
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              KRCT Gate 01 &amp; KRCE Gate 01
             </div>
           </div>
 
-          <!-- Step 2: YOLO Detection -->
+          <!-- Step 2: Bus Detection -->
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all duration-300">
             <div>
@@ -392,16 +436,15 @@
                   class="w-10 h-10 rounded-2xl bg-blue-100 text-brand-primary flex items-center justify-center font-bold text-sm">
                   02</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">YOLO Detection</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Bus Detection</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Applies the configured <code>models/yolov8n.pt</code> deep convolutional model, filtering specifically
-                for COCO Class 5 (Bus) with a tuned confidence threshold of 0.20.
+                Identifies buses in camera footage using AI, helping the system focus on college bus movements.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Model: Ultralytics YOLOv8n (Class ID: 5)
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              AI-Based Bus Detection
             </div>
           </div>
 
@@ -414,20 +457,19 @@
                   class="w-10 h-10 rounded-2xl bg-indigo-100 text-brand-deep flex items-center justify-center font-bold text-sm">
                   03</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Vehicle Tracking</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Maintains a temporal vehicle identity across consecutive video frames using ByteTrack
-                (<code>bytetrack.yaml</code>), eliminating identity switches when buses turn or slow down.
+                Tracks detected buses as they move through the camera view to follow their movement consistently.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Algorithm: ByteTrack Frame Association
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Automatic Bus Tracking
             </div>
           </div>
 
-          <!-- Step 4: Virtual Line Classification -->
+          <!-- Step 4: Entry & Exit Detection -->
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all duration-300">
             <div>
@@ -436,22 +478,21 @@
                   class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-sm">
                   04</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Core
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Core
                   Logic</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Virtual Line Classification</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Entry &amp; Exit Detection</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Evaluates the first configured line crossed by the tracked vehicle bounding box
-                (<code>check_first_touched_line</code>) to deterministically lock direction as <strong>ENTRY</strong> or
-                <strong>EXIT</strong>.
+                Uses virtual lines on the camera view to determine whether a bus is entering or leaving the college. The
+                first line touched determines the movement direction.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Lock Rule: FIRST_LINE_LOCK = True
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Virtual Line Detection
             </div>
           </div>
 
-          <!-- Step 5: Plate Recognition & Verification -->
+          <!-- Step 5: Number Plate Recognition -->
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all duration-300">
             <div>
@@ -460,20 +501,20 @@
                   class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-900 flex items-center justify-center font-bold text-sm">
                   05</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Plate Recognition &amp; Verification</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Number Plate Recognition</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Localizes the plate via <code>license_plate_detector.pt</code>, extracts text using PaddleOCR, and
-                queries the registered college bus records in MongoDB Atlas using RapidFuzz matching.
+                Reads the bus number plate and checks it against registered college bus records to identify authorized
+                college buses.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Pipeline: PaddleOCR + RapidFuzz (80%)
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              College Bus Verification
             </div>
           </div>
 
-          <!-- Step 6: Movement Logging -->
+          <!-- Step 6: Movement Recording -->
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all duration-300">
             <div>
@@ -482,17 +523,16 @@
                   class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-900 flex items-center justify-center font-bold text-sm">
                   06</div>
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
+                  class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Implemented</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Movement Logging</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Movement Recording</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Persists confirmed transit records into MongoDB Atlas collections (<code>bus_logs</code>,
-                <code>gate_events</code>) with timestamp, direction, gate ID, and frame crop, protected by a 20s
-                duplicate cooldown.
+                Automatically records verified college bus movements, including the bus number, date, time, gate, and
+                entry or exit status.
               </p>
             </div>
-            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-500">
-              Storage: MongoDB Atlas (Cluster0)
+            <div class="mt-6 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Automatic Record Keeping
             </div>
           </div>
         </div>
@@ -513,63 +553,71 @@
             Key Features of INOUTX
           </h2>
           <p class="mt-3.5 text-sm sm:text-base text-slate-600 font-normal">
-            Engineered exclusively for registered college bus detection, movement tracking, and automated perimeter
-            logging.
+            A smart college transport monitoring system that identifies registered college buses, tracks their
+            movements, and automatically records their entry and exit at campus gates.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Feature 1: YOLO-Based College Bus Detection -->
+          <!-- Feature 1: AI-Based Bus Detection -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-sky-100 text-brand-primary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">directions_bus</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-sky-100 text-brand-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">directions_bus</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">01</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">YOLO-Based Bus Detection</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">AI-Based Bus Detection</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Extracts bounding coordinates specifically for college buses using YOLOv8, separating target buses from
-                general background vehicles.
+                Identifies buses in camera footage using artificial intelligence, helping the system focus on college
+                bus movements.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-primary">
-              Class ID: 5 (Bus)
+              Smart Bus Detection
             </div>
           </div>
 
-          <!-- Feature 2: Vehicle Tracking Across Frames -->
+          <!-- Feature 2: Vehicle Tracking -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-blue-100 text-brand-deep flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">route</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-brand-deep flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">route</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">02</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Vehicle Tracking</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Applies ByteTrack frame correlation to track bus trajectories continuously throughout entrance transit
-                without duplicate ID generation.
+                Follows detected buses as they move through the camera view to monitor their movements consistently.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-deep">
-              ByteTrack Frame Persistence
+              Automatic Bus Tracking
             </div>
           </div>
 
-          <!-- Feature 3: First Virtual Line Touch Classification -->
+          <!-- Feature 3: Entry & Exit Detection -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">straighten</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">straighten</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">03</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Virtual Line Touch</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Entry &amp; Exit Detection</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Calculates bounding-box edge intersection against entry and exit line segments, locking transit
-                direction on first line contact.
+                Uses virtual lines on the camera view to determine whether a bus is entering or leaving the campus. The
+                first line touched determines the direction.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-emerald-700">
-              Direction Locked at First Touch
+              Virtual Line Detection
             </div>
           </div>
 
@@ -577,99 +625,113 @@
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">badge</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">badge</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">04</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Number Plate Recognition</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Extracts plate regions via dedicated YOLO detector and translates characters with PaddleOCR only after
-                first-line trigger.
+                Reads bus number plates automatically to help identify each vehicle.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-purple-700">
-              YOLO Plate + PaddleOCR
+              Automatic Number Plate Reading
             </div>
           </div>
 
-          <!-- Feature 5: Registered College Bus Verification -->
+          <!-- Feature 5: Registered Bus Verification -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">verified</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">verified</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">05</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Registered Bus Verification</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Queries institutional MongoDB Atlas database to authenticate detected buses against active KRCT &amp;
-                KRCE bus routes.
+                Checks the recognized bus number against registered college bus records to confirm whether the bus is
+                authorized.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-amber-800">
-              RapidFuzz Fuzzy Score &ge; 80%
+              College Bus Verification
             </div>
           </div>
 
-          <!-- Feature 6: Digital Entry & Exit Records -->
+          <!-- Feature 6: Digital Transit Records -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-900 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">inventory</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-900 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">inventory</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">06</span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mb-2">Digital Transit Records</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Stores structured JSON documents containing timestamps, direction, plate ID, gate number, and snapshot
-                image URLs.
+                Automatically records verified bus movements, including the bus number, date, time, gate, and entry or
+                exit status.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-teal-800">
-              MongoDB Atlas Collections
+              Automated Record Keeping
             </div>
           </div>
 
-          <!-- Feature 7: Reporting and Administration -->
+          <!-- Feature 7: Reports & Administration -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-900 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">mail</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-900 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">mail</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">07</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Reporting &amp; Administration</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Reports &amp; Administration</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                APScheduler background cron engine generates and emails automated daily transit summaries to campus
-                authorities at 09:30 AM IST.
+                Generates daily bus movement reports and emails summaries to campus authorities according to the
+                configured schedule.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-rose-800">
-              Daily 09:30 AM Cron Dispatch
+              Daily Transport Reports
             </div>
           </div>
 
-          <!-- Feature 8: Multi-Gate Monitoring (Scope Status) -->
+          <!-- Feature 8: Multiple Gate Support -->
           <div
             class="p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-card-soft transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-slate-200 text-slate-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">hub</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-slate-200 text-slate-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">hub</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">08</span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mb-2">Multi-Gate Architecture</h3>
+              <h3 class="text-base font-bold text-slate-900 mb-2">Multiple Gate Support</h3>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Code architecture supports dual gates: KRCT Gate 01 and KRCE Gate 01, operational subject to active
-                on-site RTSP camera stream availability.
+                Supports monitoring at both KRCT Gate 01 and KRCE Gate 01, depending on the availability of their
+                configured camera streams.
               </p>
             </div>
             <div class="mt-4 pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-slate-700">
-              KRCT &amp; KRCE Central Registry
+              KRCT &amp; KRCE Gate Monitoring
             </div>
           </div>
         </div>
 
-        <!-- Scope Notice -->
+        <!-- Project Scope Notice -->
         <div
-          class="mt-10 p-4 rounded-2xl bg-blue-50/60 border border-blue-200 text-xs text-brand-deep leading-relaxed text-center font-medium">
-          <strong>Project Scope Definition:</strong> INOUTX is strictly engineered for registered college bus detection,
-          tracking, and verification. General staff vehicles, visitor tracking, passenger facial identification, and
-          universal vehicle counting are outside the active project boundary.
+          class="mt-10 p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-xs sm:text-sm text-brand-deep leading-relaxed text-center font-medium">
+          <strong class="font-bold">Designed Exclusively for College Buses:</strong> INOUTX focuses on detecting,
+          verifying, tracking, and recording registered college buses. Staff vehicle monitoring, visitor tracking,
+          facial recognition, and general vehicle counting are not part of the current system.
         </div>
       </div>
     </section>
@@ -685,163 +747,215 @@
             Active Stack
           </span>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-deep tracking-tight leading-tight">
-            Production Technology Stack
+            Technologies Behind INOUTX
           </h2>
           <p class="mt-3.5 text-sm sm:text-base text-slate-600 font-normal">
-            Directly verified from the active repository files and production runtime dependencies.
+            INOUTX combines AI, camera technology, and cloud storage to monitor registered college buses and record
+            their movements automatically.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Python -->
+          <!-- Technology 1: Python -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-sky-50 text-brand-primary flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">code</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-brand-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">code</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">01</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">Python 3.10+</h3>
-              <p class="text-xs text-slate-500 mb-3">Core orchestration, multithreading, and scheduler.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">APScheduler</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">RapidFuzz</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Python</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Runs the main system and coordinates bus detection, tracking, and movement recording.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">Core
+                  Runtime</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Core Runtime Engine
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Core System Engine
             </div>
           </div>
 
-          <!-- YOLOv8 & ByteTrack -->
+          <!-- Technology 2: AI Bus Detection & Tracking -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-deep flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">visibility</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-brand-deep flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">visibility</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">02</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">YOLOv8 &amp; ByteTrack</h3>
-              <p class="text-xs text-slate-500 mb-3">Object detection &amp; continuous identity tracking.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">yolov8n.pt</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">bytetrack.yaml</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">AI Bus Detection &amp; Tracking</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Identifies buses in camera footage and follows their movements to help determine their entry and exit.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">YOLOv8
+                  &amp; ByteTrack</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Ultralytics Computer Vision
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Intelligent Bus Monitoring
             </div>
           </div>
 
-          <!-- OpenCV & Line Logic -->
+          <!-- Technology 3: Camera Processing -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">architecture</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">architecture</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">03</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">OpenCV (cv2)</h3>
-              <p class="text-xs text-slate-500 mb-3">Video ingestion, line rendering, and calibration.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">RTSP Ingestion</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">Mouse Calibration</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Camera Processing</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Captures and processes camera footage, displays virtual detection lines, and helps configure gate
+                monitoring.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">OpenCV
+                  Video Processing</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Geometric Line Processing
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Live Video &amp; Virtual Lines
             </div>
           </div>
 
-          <!-- PaddleOCR -->
+          <!-- Technology 4: Number Plate Recognition -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">spellcheck</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">spellcheck</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">04</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">PaddleOCR</h3>
-              <p class="text-xs text-slate-500 mb-3">High-accuracy character extraction on plate crops.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">PaddleOCR v2.9</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">Fast Score 0.55</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Number Plate Recognition</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Reads bus number plates from camera images to help identify registered college buses.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">PaddleOCR
+                  Text Extraction</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              OCR Engine
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Automatic Number Plate Reading
             </div>
           </div>
 
-          <!-- Flask & Socket.IO -->
+          <!-- Technology 5: Web Application & Live Updates -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">hub</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">hub</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">05</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">Flask &amp; Socket.IO</h3>
-              <p class="text-xs text-slate-500 mb-3">Backend REST API and real-time gate telemetry.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">Flask 3.x</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">Flask-SocketIO</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Web Application &amp; Live Updates</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Connects the system to the website dashboard, allowing users to view bus monitoring information and live
+                updates.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">Flask
+                  &amp; Socket.IO</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Backend Application Server
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Dashboard &amp; Real-Time Monitoring
             </div>
           </div>
 
-          <!-- MongoDB Atlas -->
+          <!-- Technology 6: Relational Database -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">database</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">database</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">06</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">MongoDB Atlas</h3>
-              <p class="text-xs text-slate-500 mb-3">Cloud NoSQL database for bus records and event logs.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">college_buses</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">bus_logs</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Relational Database</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Stores registered college bus details, gate transit logs, and movement records securely in a structured
+                PostgreSQL database.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">PostgreSQL</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Persistent Cloud Datastore
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Structured SQL Storage
             </div>
           </div>
 
-          <!-- React & Vite -->
+          <!-- Technology 7: Monitoring Dashboard -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">web</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">web</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">07</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">React &amp; Vite</h3>
-              <p class="text-xs text-slate-500 mb-3">Modern single-page frontend monitoring interface.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">React 18+</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">Vite Builder</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">Monitoring Dashboard</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Provides a user-friendly interface for viewing college bus activity and accessing available monitoring
+                information.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">React
+                  &amp; Vite Interface</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              Dashboard Frontend
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              Web-Based Management
             </div>
           </div>
 
-          <!-- RTSP Protocol -->
+          <!-- Technology 8: CCTV Camera Streams -->
           <div
             class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft transition-all">
             <div>
-              <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-800 flex items-center justify-center mb-4">
-                <span class="material-symbols-outlined text-2xl">videocam</span>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">videocam</span>
+                </div>
+                <span class="text-xs font-bold text-slate-400">08</span>
               </div>
-              <h3 class="text-sm font-bold text-slate-900 mb-1">RTSP Camera Feeds</h3>
-              <p class="text-xs text-slate-500 mb-3">Real-time IP camera video stream transport protocol.</p>
-              <div class="space-y-1 text-xs text-slate-700 font-mono">
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px] mr-1">rtsp://...:554</span>
-                <span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-[11px]">Masked Creds</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-1">CCTV Camera Streams</h3>
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+                Receives video from connected gate cameras to monitor bus movements at KRCT and KRCE.
+              </p>
+              <div class="space-y-1 text-xs text-slate-700">
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600">RTSP
+                  Stream Integration</span>
               </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
-              CCTV Network Protocol
+            <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              KRCT &amp; KRCE Gate Connectivity
             </div>
           </div>
         </div>
@@ -849,6 +963,106 @@
     </section>
 
 
+
+    <!-- ========================================== -->
+    <!-- 8. PROJECT GALLERY (Creative Bento Collage)-->
+    <!-- ========================================== -->
+    <section class="py-20 sm:py-28 px-5 sm:px-12 bg-white border-b border-slate-100" id="gallery">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <span
+            class="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider text-brand-primary bg-blue-50 border border-blue-200 uppercase mb-3">
+            System Showcase
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-deep tracking-tight leading-tight">
+            Project Visual Gallery
+          </h2>
+          <p class="mt-3.5 text-sm sm:text-base text-slate-600 font-normal">
+            A creative visual overview of the live monitoring interface, detection architecture, and engineering team.
+          </p>
+        </div>
+
+        <!-- Balanced Bento Collage Grid (Normal Proportions) -->
+        <div class="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 gap-4 sm:gap-5">
+          <!-- Tile 1: Left Pillar — KRCT Campus Gate Bus Surveillance (bus01.jpeg) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-3 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-2 h-[280px] sm:h-[340px] lg:h-[430px] cursor-pointer"
+            data-caption="INOUTX College Bus Gate Monitoring (KRCT Campus)">
+            <img src="bus01.jpeg" alt="INOUTX College Bus Gate Monitoring (KRCT Campus)" loading="lazy"
+              class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none">
+            </div>
+          </div>
+
+          <!-- Tile 2: Center Top Banner — Live Monitoring Interface (01.png) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-6 lg:col-start-4 lg:col-span-6 lg:row-start-1 lg:row-span-1 h-[190px] sm:h-[200px] lg:h-[205px] cursor-pointer"
+            data-caption="INOUTX Web Interface & Live Fleet Monitoring Dashboard">
+            <img src="01.png" alt="INOUTX Web Interface & Live Fleet Monitoring Dashboard" loading="lazy"
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent pointer-events-none">
+            </div>
+          </div>
+
+          <!-- Tile 3: Right Pillar — KRCE Campus Gate Bus Surveillance (bus02.jpeg) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-3 lg:col-start-10 lg:col-span-3 lg:row-start-1 lg:row-span-2 h-[280px] sm:h-[340px] lg:h-[430px] cursor-pointer"
+            data-caption="INOUTX College Bus Gate Monitoring (KRCE Campus)">
+            <img src="bus02.jpeg" alt="INOUTX College Bus Gate Monitoring (KRCE Campus)" loading="lazy"
+              class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none">
+            </div>
+          </div>
+
+          <!-- Tile 4: Center Bottom Left — Engineer Abdul Asim M (team-asim.png) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-2 lg:col-start-4 lg:col-span-2 lg:row-start-2 lg:row-span-1 h-[200px] sm:h-[190px] lg:h-[205px] cursor-pointer"
+            data-caption="">
+            <img src="krct1.png" alt="INOUTX Engineering Team Member Abdul Asim M" loading="lazy"
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent pointer-events-none">
+            </div>
+
+          </div>
+
+          <!-- Tile 5: Center Bottom Middle — Engineer Abishek Christopher R (team-chris.png) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-2 lg:col-start-6 lg:col-span-2 lg:row-start-2 lg:row-span-1 h-[200px] sm:h-[190px] lg:h-[205px] cursor-pointer"
+            data-caption="">
+            <img src="poster.jpeg" alt="INOUTX Engineering Team Member Abishek Christopher R" loading="lazy"
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent pointer-events-none">
+            </div>
+            <!-- Glass Tag -->
+
+          </div>
+
+          <!-- Tile 6: Center Bottom Right — Engineer Afridi Mohamed J (team-afridi.png) -->
+          <div
+            class="gallery-tile group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-900 border border-slate-200/80 shadow-xs hover:shadow-card-soft transition-all duration-300 sm:col-span-2 lg:col-start-8 lg:col-span-2 lg:row-start-2 lg:row-span-1 h-[200px] sm:h-[190px] lg:h-[205px] cursor-pointer"
+            data-caption="">
+            <img src="krce1.png" alt="INOUTX Engineering Team Member Afridi Mohamed J" loading="lazy"
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" />
+            <!-- Ambient Gradient Overlay -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent pointer-events-none">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ========================================== -->
     <!-- 10. PROJECT TEAM (Exact Names & Roles)     -->
@@ -883,16 +1097,29 @@
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft hover:-translate-y-1 transition-all duration-300 relative group">
             <div class="flex flex-col items-center text-center">
-              <!-- Avatar / Photo Upload Container -->
-              <div class="relative mb-4">
-                <!-- User Uploaded Photo -->
-                <img src="team-asim.png" alt="Abdul Asim M" id="team-img-abdul"
-                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover shadow-md ring-4 ring-sky-100 group-hover:ring-brand-sky transition-all duration-300"
-                  onerror="this.style.display='none'; document.getElementById('avatar-fallback-abdul').style.display='flex';" />
+              <!-- Avatar / Circular Profile Frame -->
+              <div class="relative mb-5 flex items-center justify-center">
+                <!-- Outer circular frame with light-blue gradient ring -->
+                <div
+                  class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-sky-200 via-sky-100 to-blue-200 shadow-sm ring-4 ring-sky-50/90 group-hover:from-sky-300 group-hover:to-brand-primary group-hover:ring-sky-100 transition-all duration-300 flex items-center justify-center">
+                  <!-- Inner circular viewport with clean white backdrop & overflow hidden -->
+                  <div
+                    class="w-full h-full rounded-full overflow-hidden bg-white flex items-end justify-center pt-2 sm:pt-2.5 px-1 relative">
+                    <img src="team-asim.png" alt="Abdul Asim M" id="team-img-abdul"
+                      class="w-full h-full object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                      onerror="this.style.display='none'; document.getElementById('avatar-fallback-abdul').style.display='flex';" />
+
+                    <!-- Fallback Avatar Icon -->
+                    <div id="avatar-fallback-abdul"
+                      class="hidden absolute inset-0 items-center justify-center bg-slate-100 text-slate-400">
+                      <span class="material-symbols-outlined text-4xl sm:text-5xl">person</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Name & Project Role Badge -->
-              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Abdul Asim M</h3>
+              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">ABDUL ASIM M</h3>
               <span
                 class="mt-1.5 inline-block px-3 py-0.5 rounded-full text-[11px] font-bold text-brand-primary bg-sky-50 border border-sky-100">
                 AI &amp; Computer Vision Lead
@@ -910,7 +1137,8 @@
 
             <!-- Social Links (LinkedIn & GitHub) -->
             <div class="mt-5 pt-4 border-t border-slate-100 w-full flex items-center justify-center gap-2.5">
-              <a href="https://www.linkedin.com/in/abdul-asim-m" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/abdul-asim-m-059863380?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                target="_blank" rel="noopener noreferrer"
                 class="flex-1 inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-blue-50/80 hover:bg-[#0A66C2] text-[#0A66C2] hover:text-white border border-blue-200/80 text-xs font-bold transition-all active:scale-95"
                 title="LinkedIn Profile">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -919,7 +1147,7 @@
                 </svg>
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/abdul-asim" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/abdulasim823-coder" target="_blank" rel="noopener noreferrer"
                 class="flex-1 inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-800 hover:text-white border border-slate-200 text-xs font-bold transition-all active:scale-95"
                 title="GitHub Profile">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -936,20 +1164,32 @@
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft hover:-translate-y-1 transition-all duration-300 relative group">
             <div class="flex flex-col items-center text-center">
-              <!-- Avatar / Photo Upload Container -->
-              <div class="relative mb-4">
-                <!-- User Uploaded Photo -->
-                <img src="team-chris.png" alt="Abhishek Christopher R" id="team-img-abhishek"
-                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover shadow-md ring-4 ring-sky-100 group-hover:ring-brand-sky transition-all duration-300"
-                  onerror="this.style.display='none'; document.getElementById('avatar-fallback-abhishek').style.display='flex';" />
+              <!-- Avatar / Circular Profile Frame -->
+              <div class="relative mb-5 flex items-center justify-center">
+                <!-- Outer circular frame with light-blue gradient ring -->
+                <div
+                  class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-sky-200 via-sky-100 to-blue-200 shadow-sm ring-4 ring-sky-50/90 group-hover:from-sky-300 group-hover:to-brand-primary group-hover:ring-sky-100 transition-all duration-300 flex items-center justify-center">
+                  <!-- Inner circular viewport with clean white backdrop & overflow hidden -->
+                  <div
+                    class="w-full h-full rounded-full overflow-hidden bg-white flex items-end justify-center pt-2 sm:pt-2.5 px-1 relative">
+                    <img src="team-chris.png" alt="Abishek Christopher R" id="team-img-abhishek"
+                      class="w-full h-full object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                      onerror="this.style.display='none'; document.getElementById('avatar-fallback-abhishek').style.display='flex';" />
 
+                    <!-- Fallback Avatar Icon -->
+                    <div id="avatar-fallback-abhishek"
+                      class="hidden absolute inset-0 items-center justify-center bg-slate-100 text-slate-400">
+                      <span class="material-symbols-outlined text-4xl sm:text-5xl">person</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Name & Project Role Badge -->
-              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Abishek Christopher R</h3>
+              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">ABISHEK CHRISTOPHER R</h3>
               <span
                 class="mt-1.5 inline-block px-3 py-0.5 rounded-full text-[11px] font-bold text-brand-primary bg-sky-50 border border-sky-100">
-                CV &amp; Line Logic Engineer
+                Hadware Connectivity &amp; Overall Project Coordinator
               </span>
 
               <!-- Department -->
@@ -960,12 +1200,11 @@
                 KRCT, Tiruchirappalli
               </p>
 
-
             </div>
 
             <!-- Social Links (LinkedIn & GitHub) -->
             <div class="mt-5 pt-4 border-t border-slate-100 w-full flex items-center justify-center gap-2.5">
-              <a href="https://www.linkedin.com/in/abhishek-christopher-r" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/abishek-christopher-r/" target="_blank" rel="noopener noreferrer"
                 class="flex-1 inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-blue-50/80 hover:bg-[#0A66C2] text-[#0A66C2] hover:text-white border border-blue-200/80 text-xs font-bold transition-all active:scale-95"
                 title="LinkedIn Profile">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -974,7 +1213,7 @@
                 </svg>
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/abhishek-christopher" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/AbishekChristopher" target="_blank" rel="noopener noreferrer"
                 class="flex-1 inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-900 text-slate-800 hover:text-white border border-slate-200 text-xs font-bold transition-all active:scale-95"
                 title="GitHub Profile">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -991,20 +1230,32 @@
           <div
             class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between hover:shadow-card-soft hover:-translate-y-1 transition-all duration-300 relative group">
             <div class="flex flex-col items-center text-center">
-              <!-- Avatar / Photo Upload Container -->
-              <div class="relative mb-4">
-                <!-- User Uploaded Photo -->
-                <img src="team-afridi.png" alt="Afridi Mohamed J" id="team-img-afridi"
-                  class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover shadow-md ring-4 ring-sky-100 group-hover:ring-brand-sky transition-all duration-300"
-                  onerror="this.style.display='none'; document.getElementById('avatar-fallback-afridi').style.display='flex';" />
+              <!-- Avatar / Circular Profile Frame -->
+              <div class="relative mb-5 flex items-center justify-center">
+                <!-- Outer circular frame with light-blue gradient ring -->
+                <div
+                  class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-b from-sky-200 via-sky-100 to-blue-200 shadow-sm ring-4 ring-sky-50/90 group-hover:from-sky-300 group-hover:to-brand-primary group-hover:ring-sky-100 transition-all duration-300 flex items-center justify-center">
+                  <!-- Inner circular viewport with clean white backdrop & overflow hidden -->
+                  <div
+                    class="w-full h-full rounded-full overflow-hidden bg-white flex items-end justify-center pt-2 sm:pt-2.5 px-1 relative">
+                    <img src="team-afridi.png" alt="Afridi Mohamed J" id="team-img-afridi"
+                      class="w-full h-full object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                      onerror="this.style.display='none'; document.getElementById('avatar-fallback-afridi').style.display='flex';" />
 
+                    <!-- Fallback Avatar Icon -->
+                    <div id="avatar-fallback-afridi"
+                      class="hidden absolute inset-0 items-center justify-center bg-slate-100 text-slate-400">
+                      <span class="material-symbols-outlined text-4xl sm:text-5xl">person</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Name & Project Role Badge -->
-              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Afridi Mohamed J</h3>
+              <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">AFRIDI MOHAMED J</h3>
               <span
                 class="mt-1.5 inline-block px-3 py-0.5 rounded-full text-[11px] font-bold text-brand-primary bg-sky-50 border border-sky-100">
-                Backend &amp; Cloud Database Lead
+                Fullstack &amp; Deployment Lead
               </span>
 
               <!-- Department -->
@@ -1015,12 +1266,11 @@
                 KRCT, Tiruchirappalli
               </p>
 
-
             </div>
 
             <!-- Social Links (LinkedIn & GitHub) -->
             <div class="mt-5 pt-4 border-t border-slate-100 w-full flex items-center justify-center gap-2.5">
-              <a href="https://www.linkedin.com/in/afridi-mohamed-j" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/afridimohamed-j/" target="_blank" rel="noopener noreferrer"
                 class="flex-1 inline-flex items-center justify-center space-x-1.5 py-2 px-3 rounded-xl bg-blue-50/80 hover:bg-[#0A66C2] text-[#0A66C2] hover:text-white border border-blue-200/80 text-xs font-bold transition-all active:scale-95"
                 title="LinkedIn Profile">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -1059,7 +1309,8 @@
             Frequently Asked Questions
           </h2>
           <p class="mt-3.5 text-sm sm:text-base text-slate-500 font-normal">
-            Technical clarifications regarding YOLO detection, virtual lines, and college bus monitoring.
+            Common questions regarding bus identification, duplicate movement checks, gate monitoring, and transit
+            records.
           </p>
         </div>
 
@@ -1070,15 +1321,14 @@
             open>
             <summary
               class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-sm sm:text-base">
-              <span>How does the First Virtual Line Touch Concept prevent false direction flips?</span>
+              <span>What happens if the camera cannot read a bus's number plate clearly?</span>
               <span
                 class="ml-4 material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
             </summary>
             <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Once a tracked vehicle's bounding box touches its first virtual line (<code>ENTRY_LINE</code> or
-              <code>EXIT_LINE</code>), the system sets <code>first_crossed_line</code> and locks the movement direction
-              (<code>FIRST_LINE_LOCK = True</code>). As the bus proceeds and touches the second line, the state is
-              already immutable, completely eliminating directional flip-flops.
+              INOUTX attempts to recognize the number plate from the camera footage. If the plate cannot be identified
+              reliably, the bus may remain unverified until sufficient information is available. This helps reduce
+              incorrect bus identification.
             </p>
           </details>
 
@@ -1087,14 +1337,14 @@
             class="group bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
             <summary
               class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-sm sm:text-base">
-              <span>Why is OCR triggered only after the first virtual line is touched?</span>
+              <span>How does INOUTX avoid recording the same bus movement multiple times?</span>
               <span
                 class="ml-4 material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
             </summary>
             <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Running deep neural OCR on every full-resolution video frame wastes GPU and CPU cycles. By activating the
-              OCR pipeline (<code>OCR_AFTER_FIRST_LINE_ONLY = True</code>) only during a 4.0-second window after virtual
-              line touch, INOUTX maximizes frame rate and processes crops only when the bus is in optimal camera focus.
+              INOUTX uses <span class="font-semibold text-slate-800">vehicle tracking</span> and a time-based duplicate
+              check to reduce repeated records for the same movement. This helps keep transit logs organized and
+              minimizes unnecessary duplicate entries.
             </p>
           </details>
 
@@ -1103,14 +1353,14 @@
             class="group bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
             <summary
               class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-sm sm:text-base">
-              <span>What happens if an unregistered or non-college bus passes through?</span>
+              <span>Can INOUTX monitor buses at multiple college gates?</span>
               <span
                 class="ml-4 material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
             </summary>
             <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              The YOLO detector classifies the object as a bus, but when PaddleOCR extracts the plate and queries the
-              MongoDB Atlas <code>college_buses</code> collection, the query returns no matching active pass. The
-              vehicle is recorded into the <code>visitor_vehicles</code> / unverified log for security oversight.
+              Yes. INOUTX is designed to support <span class="font-semibold text-slate-800">KRCT Gate 01</span> and
+              <span class="font-semibold text-slate-800">KRCE Gate 01</span>. Each gate uses its configured camera
+              stream to monitor bus movements and associate transit records with the appropriate gate.
             </p>
           </details>
 
@@ -1119,14 +1369,15 @@
             class="group bg-slate-50 rounded-2xl p-5 sm:p-6 border border-slate-100 [&_summary::-webkit-details-marker]:hidden">
             <summary
               class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-sm sm:text-base">
-              <span>How are virtual lines calibrated for new campus camera positions?</span>
+              <span>Where are bus movement records stored, and can they be reviewed later?</span>
               <span
                 class="ml-4 material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
             </summary>
             <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              INOUTX includes an interactive OpenCV calibration script (<code>calibrate_lines.py</code>) allowing
-              administrators to click and drag line endpoints directly on the camera preview feed. Coordinates are saved
-              to <code>lines_config.json</code> and reloaded on the fly without restarting the service.
+              Verified bus movement records are stored in <span class="font-semibold text-slate-800">PostgreSQL</span>,
+              a robust relational database. Authorized users can review available transit information, such as bus
+              numbers, timestamps, gate details, and entry or exit status, through the application's supported viewing
+              and reporting features.
             </p>
           </details>
         </div>
@@ -1152,48 +1403,87 @@
         </div>
 
         <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-glass">
-          <form class="space-y-5" id="contact-form">
+          <form class="space-y-5" id="contact-form" novalidate>
+            <!-- Invisible Bot Honeypot Field -->
+            <div class="hidden" aria-hidden="true" style="display: none !important;">
+              <input type="text" name="company" id="contact-company" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-                  for="contact-name">Your Name</label>
+                  for="contact-name">Your Name <span class="text-rose-500">*</span></label>
                 <input
-                  class="w-full text-sm rounded-xl border-slate-200 focus:border-brand-primary focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60"
-                  id="contact-name" placeholder="e.g. Campus Coordinator" required type="text" />
+                  class="w-full text-sm rounded-xl border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60 transition-all outline-none"
+                  id="contact-name" name="name" placeholder="e.g. Campus Coordinator" required type="text"
+                  maxlength="100" />
+                <p id="contact-name-error" class="hidden mt-1.5 text-xs text-rose-600 font-semibold flex items-center">
+                  <span class="material-symbols-outlined text-sm mr-1">error</span>
+                  <span class="err-text"></span>
+                </p>
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-                  for="contact-email">Email Address</label>
+                  for="contact-email">Email Address <span class="text-rose-500">*</span></label>
                 <input
-                  class="w-full text-sm rounded-xl border-slate-200 focus:border-brand-primary focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60"
-                  id="contact-email" placeholder="coordinator@krct.ac.in" required type="email" />
+                  class="w-full text-sm rounded-xl border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60 transition-all outline-none"
+                  id="contact-email" name="email" placeholder="coordinator@krct.ac.in" required type="email"
+                  maxlength="120" />
+                <p id="contact-email-error" class="hidden mt-1.5 text-xs text-rose-600 font-semibold flex items-center">
+                  <span class="material-symbols-outlined text-sm mr-1">error</span>
+                  <span class="err-text"></span>
+                </p>
               </div>
             </div>
+
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-                for="contact-subject">Subject</label>
+                for="contact-subject">Subject <span class="text-rose-500">*</span></label>
               <input
-                class="w-full text-sm rounded-xl border-slate-200 focus:border-brand-primary focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60"
-                id="contact-subject" placeholder="INOUTX College Bus Gate Integration Inquiry" required type="text" />
+                class="w-full text-sm rounded-xl border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60 transition-all outline-none"
+                id="contact-subject" name="subject" placeholder="INOUTX College Bus Gate Integration Inquiry" required
+                type="text" maxlength="150" />
+              <p id="contact-subject-error" class="hidden mt-1.5 text-xs text-rose-600 font-semibold flex items-center">
+                <span class="material-symbols-outlined text-sm mr-1">error</span>
+                <span class="err-text"></span>
+              </p>
             </div>
+
             <div>
               <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-                for="contact-message">Message</label>
+                for="contact-message">Message <span class="text-rose-500">*</span></label>
               <textarea
-                class="w-full text-sm rounded-xl border-slate-200 focus:border-brand-primary focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60"
-                id="contact-message" placeholder="Provide details regarding your inquiry..." required
-                rows="4"></textarea>
+                class="w-full text-sm rounded-xl border border-slate-200 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 px-3.5 py-2.5 bg-slate-50/60 transition-all outline-none"
+                id="contact-message" name="message" placeholder="Provide details regarding your inquiry..." required
+                rows="4" maxlength="5000"></textarea>
+              <p id="contact-message-error" class="hidden mt-1.5 text-xs text-rose-600 font-semibold flex items-center">
+                <span class="material-symbols-outlined text-sm mr-1">error</span>
+                <span class="err-text"></span>
+              </p>
             </div>
+
             <button
-              class="w-full bg-gradient-to-r from-brand-primary to-brand-cyan hover:from-brand-deep hover:to-brand-primary text-white font-extrabold text-sm py-3.5 px-6 rounded-2xl shadow-md transition-all active:scale-98 flex items-center justify-center space-x-2"
+              class="w-full bg-gradient-to-r from-brand-primary to-brand-cyan hover:from-brand-deep hover:to-brand-primary text-white font-extrabold text-sm py-3.5 px-6 rounded-2xl shadow-md transition-all active:scale-98 flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
               id="contact-submit-btn" type="submit">
-              <span>Submit Project Message</span>
-              <span class="material-symbols-outlined text-lg">send</span>
+              <span id="contact-submit-text">Submit Project Message</span>
+              <span class="material-symbols-outlined text-lg" id="contact-submit-icon">send</span>
             </button>
+
+            <!-- Success Notification Banner -->
             <div
-              class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 text-center font-semibold"
+              class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 text-center font-semibold flex items-center justify-center space-x-2 shadow-xs"
               id="contact-response-msg">
-              Thank you for contacting the INOUTX team! Your inquiry has been received for the project developers.
+              <span class="material-symbols-outlined text-base text-emerald-600 shrink-0">check_circle</span>
+              <span id="contact-response-text">Thank you for reaching out! Your message has been sent and a confirmation
+                has been dispatched to your email.</span>
+            </div>
+
+            <!-- Error Notification Banner -->
+            <div
+              class="hidden p-4 rounded-2xl bg-rose-50 border border-rose-200 text-xs text-rose-800 text-center font-semibold flex items-center justify-center space-x-2 shadow-xs"
+              id="contact-error-msg">
+              <span class="material-symbols-outlined text-base text-rose-600 shrink-0">error</span>
+              <span id="contact-error-text">Failed to send message. Please review the form and try again.</span>
             </div>
           </form>
         </div>
@@ -1204,45 +1494,91 @@
     <!-- 13. FOOTER                                 -->
     <!-- ========================================== -->
     <footer
-      class="py-12 px-6 sm:px-12 bg-slate-900 text-white border-t border-slate-800 flex flex-col items-center w-full">
-      <div
-        class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
-        <!-- Logo & Official Tagline -->
-        <div class="flex flex-col items-center md:items-start space-y-2">
-          <a aria-label="INOUTX Home" class="inline-block" href="#">
-            <img alt="INOUTX official logo" class="h-10 sm:h-12 w-auto object-contain rounded-xl shadow-xs"
-              src="logo.png" />
-          </a>
-          <p class="text-xs text-slate-400 max-w-md text-center md:text-left">
-            AI-Based College Bus Entry, Exit and Monitoring System. Engineered for K. Ramakrishnan College of Technology
-            (Autonomous), Tiruchirappalli.
+      class="pt-16 pb-12 px-6 sm:px-12 bg-slate-900 text-white border-t border-slate-800 flex flex-col items-center w-full">
+      <div class="w-full max-w-6xl">
+        <!-- Main Footer Context Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-12 border-b border-slate-800">
+          <!-- Col 1: System Brand & Institutional Scope (spans 5 cols) -->
+          <div class="lg:col-span-5 flex flex-col items-start space-y-3.5">
+            <a aria-label="INOUTX Home" class="inline-block group" href="#">
+              <img alt="INOUTX official logo"
+                class="h-10 sm:h-12 w-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+                src="logo-footer.png" />
+            </a>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
+              AI-based transport monitoring system that identifies registered college buses, tracks their movements, and
+              automatically records campus gate transit records.
+            </p>
+            <div class="pt-1 text-xs text-slate-400 flex flex-col space-y-0.5">
+              <span class="font-semibold text-slate-300">Department of Computer Science and Engineering</span>
+              <span>K. Ramakrishnan College of Technology (Autonomous), Tiruchirappalli</span>
+            </div>
+
+          </div>
+
+          <!-- Col 2: System Pages (spans 3 cols) -->
+          <div class="lg:col-span-3 flex flex-col space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200">System Pages</h4>
+            <ul class="space-y-2 text-xs text-slate-400 font-medium">
+              <li><a class="hover:text-sky-300 transition-colors" href="#about">About INOUTX</a></li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#workflow">Active Pipeline &amp; Workflow</a>
+              </li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#features">Key Features</a></li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#tech-stack">Technologies Behind INOUTX</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Project & Team (spans 2 cols) -->
+          <div class="lg:col-span-2 flex flex-col space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200">Project &amp; Team</h4>
+            <ul class="space-y-2 text-xs text-slate-400 font-medium">
+              <li><a class="hover:text-sky-300 transition-colors" href="#gallery">Project Gallery</a></li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#team">Engineering Team</a></li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#faq">Frequently Asked Questions</a></li>
+              <li><a class="hover:text-sky-300 transition-colors" href="#contact">Project Enquiry</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Platform & Gate Connectivity (spans 2 cols) -->
+          <div class="lg:col-span-2 flex flex-col space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200">Gate Connectivity</h4>
+            <ul class="space-y-2 text-xs text-slate-400 font-medium">
+              <li class="flex items-center space-x-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                <span>KRCT Gate 01</span>
+              </li>
+              <li class="flex items-center space-x-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                <span>KRCE Gate 01</span>
+              </li>
+              <li class="pt-1.5">
+                <a class="inline-flex items-center space-x-1 text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+                  href="https://inoutx.zynix.us" target="_blank" rel="noopener noreferrer">
+                  <span>Live Dashboard</span>
+                  <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+                </a>
+              </li>
+              <li>
+                <a class="inline-flex items-center space-x-1 text-slate-300 hover:text-white font-semibold transition-colors"
+                  href="https://github.com/inoutxtesting/INOUTX." target="_blank" rel="noopener noreferrer">
+                  <span>GitHub Repository</span>
+                  <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Attribution & Copyright -->
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+          <p class="text-center sm:text-left">
+            &copy; INOUTX — K. Ramakrishnan College of Technology (Autonomous), Tiruchirappalli.
           </p>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 font-semibold">
-          <a class="hover:text-sky-300 transition-colors" href="#about">About</a>
-          <a class="hover:text-sky-300 transition-colors" href="#workflow">Workflow</a>
-          <a class="hover:text-sky-300 transition-colors" href="#features">Features</a>
-          <a class="hover:text-sky-300 transition-colors" href="#architecture">Architecture</a>
-          <a class="hover:text-sky-300 transition-colors" href="#tech-stack">Tech Stack</a>
-          <a class="hover:text-sky-300 transition-colors flex items-center space-x-1"
-            href="https://github.com/inoutxtesting/INOUTX." rel="noopener noreferrer" target="_blank">
-            <span>GitHub Repository</span>
-            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Team Attribution & Copyright -->
-      <div
-        class="w-full max-w-6xl pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
-        <div>
-          <span>Engineered by </span>
-          <strong class="text-slate-200 font-medium">Abdul Asim M, Abishek Christopher R, Afridi Mohamed J</strong>.
-        </div>
-        <div>
-          <span>&copy; INOUTX — K. Ramakrishnan College of Technology, Tiruchirappalli.</span>
+          <div class="flex items-center space-x-4 text-[11px] text-slate-400">
+            <span>Autonomous Transport Intelligence</span>
+            <span>&bull;</span>
+            <a class="hover:text-sky-300 transition-colors" href="#about">Back to Top &uarr;</a>
+          </div>
         </div>
       </div>
     </footer>
@@ -1254,6 +1590,14 @@
   <!-- 14. INTERACTIVE SCRIPTS                    -->
   <!-- ========================================== -->
   <script>
+    // ----------------------------------------------------
+    // GLOBAL RIGHT-CLICK PREVENTION
+    // ----------------------------------------------------
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      return false;
+    }, { capture: true });
+
     // Team Member Photo Preview Handler
     window.previewTeamPhoto = function (event, imgId, fallbackId) {
       const file = event.target.files && event.target.files[0];
@@ -1276,43 +1620,40 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // ----------------------------------------------------
-      // 0. 3D CAMERA MODEL ROTATION CONTROLS
+      // 0. HERO SECTION BACKGROUND VIDEO CONTROLLER (MUTED)
       // ----------------------------------------------------
-      const modelViewer = document.getElementById('camera-3d-model');
-      const btnToggleRotate = document.getElementById('btn-toggle-3d-rotate');
-      const iconRotate = document.getElementById('icon-3d-rotate');
-      const labelRotate = document.getElementById('label-3d-rotate');
-      const btnResetCam = document.getElementById('btn-reset-3d-cam');
-      const btnSpeedCam = document.getElementById('btn-speed-3d-cam');
+      (function initHeroBgVideo() {
+        const bgVideo = document.getElementById('hero-bg-video');
+        if (bgVideo) {
+          bgVideo.muted = true;
+          bgVideo.defaultMuted = true;
+          bgVideo.setAttribute('muted', '');
+          bgVideo.setAttribute('playsinline', '');
 
-      if (modelViewer && btnToggleRotate) {
-        btnToggleRotate.addEventListener('click', () => {
-          if (modelViewer.autoRotate) {
-            modelViewer.autoRotate = false;
-            if (iconRotate) iconRotate.textContent = 'play_arrow';
-            if (labelRotate) labelRotate.textContent = 'Play';
+          const playVideo = () => {
+            const promise = bgVideo.play();
+            if (promise !== undefined) {
+              promise.catch(() => {
+                const startOnInteract = () => {
+                  bgVideo.play();
+                  document.removeEventListener('click', startOnInteract);
+                  document.removeEventListener('touchstart', startOnInteract);
+                };
+                document.addEventListener('click', startOnInteract, { once: true });
+                document.addEventListener('touchstart', startOnInteract, { once: true });
+              });
+            }
+          };
+
+          if (bgVideo.readyState >= 2) {
+            playVideo();
           } else {
-            modelViewer.autoRotate = true;
-            if (iconRotate) iconRotate.textContent = 'pause';
-            if (labelRotate) labelRotate.textContent = 'Pause';
+            bgVideo.addEventListener('canplay', playVideo, { once: true });
           }
-        });
-      }
+        }
+      })();
 
-      if (modelViewer && btnResetCam) {
-        btnResetCam.addEventListener('click', () => {
-          modelViewer.cameraOrbit = '40deg 75deg 0.55m';
-        });
-      }
 
-      if (modelViewer && btnSpeedCam) {
-        let isFast = false;
-        btnSpeedCam.addEventListener('click', () => {
-          isFast = !isFast;
-          modelViewer.rotationPerSecond = isFast ? '60deg' : '25deg';
-          btnSpeedCam.textContent = isFast ? 'Speed: 2x' : 'Speed: 1x';
-        });
-      }
 
       // ----------------------------------------------------
       // 1. FIRST VIRTUAL LINE TOUCH INTERACTIVE SIMULATION
@@ -1486,9 +1827,9 @@
         if (!cleanPlate) return;
 
         outPlate.textContent = cleanPlate;
-        outStatus.textContent = 'RUNNING PADDLEOCR & MONGODB LOOKUP...';
+        outStatus.textContent = 'RUNNING PADDLEOCR & POSTGRESQL LOOKUP...';
         outStatus.className = 'px-2.5 py-0.5 rounded text-[11px] font-bold bg-sky-950 text-sky-400 border border-sky-800';
-        outOwner.textContent = 'Comparing against MongoDB Atlas college_buses collection...';
+        outOwner.textContent = 'Querying PostgreSQL college_buses relational table...';
 
         setTimeout(() => {
           const record = registeredCollegeBuses[cleanPlate];
@@ -1531,34 +1872,319 @@
       });
 
       // ----------------------------------------------------
-      // 3. FUNCTIONAL CONTACT / ENQUIRY FORM
+      // 3. FULL-STACK CONTACT / ENQUIRY FORM CONTROLLER
       // ----------------------------------------------------
-      const contactForm = document.getElementById('contact-form');
-      const contactSubmitBtn = document.getElementById('contact-submit-btn');
-      const contactResponseMsg = document.getElementById('contact-response-msg');
+      (function initContactForm() {
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('contact-submit-btn');
+        const submitText = document.getElementById('contact-submit-text');
+        const submitIcon = document.getElementById('contact-submit-icon');
+        const responseBanner = document.getElementById('contact-response-msg');
+        const responseText = document.getElementById('contact-response-text');
+        const errorBanner = document.getElementById('contact-error-msg');
+        const errorText = document.getElementById('contact-error-text');
 
-      if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          if (contactSubmitBtn) {
-            contactSubmitBtn.disabled = true;
-            contactSubmitBtn.innerHTML = `<span>Sending...</span>`;
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const subjectInput = document.getElementById('contact-subject');
+        const messageInput = document.getElementById('contact-message');
+        const honeypotInput = document.getElementById('contact-company');
+
+        const fields = [
+          { input: nameInput, errEl: document.getElementById('contact-name-error'), name: 'name' },
+          { input: emailInput, errEl: document.getElementById('contact-email-error'), name: 'email' },
+          { input: subjectInput, errEl: document.getElementById('contact-subject-error'), name: 'subject' },
+          { input: messageInput, errEl: document.getElementById('contact-message-error'), name: 'message' }
+        ];
+
+        let isSubmitting = false;
+
+        function clearErrors() {
+          if (errorBanner) errorBanner.classList.add('hidden');
+          fields.forEach(f => {
+            if (f.errEl) f.errEl.classList.add('hidden');
+            if (f.input) {
+              f.input.classList.remove('border-rose-400', 'bg-rose-50/20', 'focus:border-rose-500');
+              f.input.classList.add('border-slate-200');
+            }
+          });
+        }
+
+        function setFieldError(fieldObj, msg) {
+          if (fieldObj.errEl) {
+            const errSpan = fieldObj.errEl.querySelector('.err-text');
+            if (errSpan) errSpan.textContent = msg;
+            else fieldObj.errEl.textContent = msg;
+            fieldObj.errEl.classList.remove('hidden');
           }
+          if (fieldObj.input) {
+            fieldObj.input.classList.remove('border-slate-200');
+            fieldObj.input.classList.add('border-rose-400', 'bg-rose-50/20', 'focus:border-rose-500');
+          }
+        }
 
+        // Live validation clearing on input
+        fields.forEach(f => {
+          if (f.input) {
+            f.input.addEventListener('input', () => {
+              if (f.errEl && !f.errEl.classList.contains('hidden')) {
+                f.errEl.classList.add('hidden');
+                f.input.classList.remove('border-rose-400', 'bg-rose-50/20', 'focus:border-rose-500');
+                f.input.classList.add('border-slate-200');
+              }
+            });
+          }
+        });
+
+        if (form) {
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (isSubmitting) return; // Prevent duplicate submissions
+
+            clearErrors();
+            if (responseBanner) responseBanner.classList.add('hidden');
+
+            const name = nameInput ? nameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value.trim() : '';
+            const message = messageInput ? messageInput.value.trim() : '';
+            const companyHoneypot = honeypotInput ? honeypotInput.value.trim() : '';
+
+            // Client-side Validation
+            let hasError = false;
+            if (!name || name.length < 2) {
+              setFieldError(fields[0], 'Please enter your full name (at least 2 characters).');
+              hasError = true;
+            } else if (name.length > 100) {
+              setFieldError(fields[0], 'Name must be under 100 characters.');
+              hasError = true;
+            }
+
+            const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            if (!email) {
+              setFieldError(fields[1], 'Please enter your email address.');
+              hasError = true;
+            } else if (!emailRegex.test(email)) {
+              setFieldError(fields[1], 'Please enter a valid email address (e.g., coordinator@krct.ac.in).');
+              hasError = true;
+            }
+
+            if (!subject || subject.length < 3) {
+              setFieldError(fields[2], 'Please enter a subject (at least 3 characters).');
+              hasError = true;
+            } else if (subject.length > 150) {
+              setFieldError(fields[2], 'Subject must be under 150 characters.');
+              hasError = true;
+            }
+
+            if (!message || message.length < 10) {
+              setFieldError(fields[3], 'Please provide details for your message (at least 10 characters).');
+              hasError = true;
+            } else if (message.length > 5000) {
+              setFieldError(fields[3], 'Message must be under 5000 characters.');
+              hasError = true;
+            }
+
+            if (hasError) {
+              return;
+            }
+
+            // Set Loading UI State
+            isSubmitting = true;
+            if (submitBtn) {
+              submitBtn.disabled = true;
+              submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+            }
+            if (submitText) submitText.textContent = 'Sending Message...';
+            if (submitIcon) {
+              submitIcon.className = 'w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin shrink-0';
+              submitIcon.textContent = '';
+            }
+
+            const payload = {
+              name: name,
+              email: email,
+              subject: subject,
+              message: message,
+              company: companyHoneypot
+            };
+
+            // Candidate API URLs (relative endpoint with fallback to port 5000)
+            const candidateUrls = ['/api/contact', 'http://localhost:5000/api/contact'];
+            let resultData = null;
+            let networkError = null;
+
+            for (const url of candidateUrls) {
+              try {
+                const response = await fetch(url, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
+                });
+
+                const data = await response.json().catch(() => null);
+
+                if (response.ok && data && data.success) {
+                  resultData = data;
+                  break;
+                } else if (data) {
+                  resultData = data;
+                  break;
+                }
+              } catch (err) {
+                networkError = err;
+                continue;
+              }
+            }
+
+            // Process Result
+            if (resultData && resultData.success) {
+              // Success State
+              if (responseBanner) {
+                if (responseText && resultData.message) responseText.textContent = resultData.message;
+                responseBanner.classList.remove('hidden');
+              }
+              if (submitText) submitText.textContent = 'Message Sent Successfully!';
+              if (submitIcon) {
+                submitIcon.className = 'material-symbols-outlined text-lg';
+                submitIcon.textContent = 'check_circle';
+              }
+              if (submitBtn) {
+                submitBtn.classList.remove('bg-gradient-to-r', 'from-brand-primary', 'to-brand-cyan');
+                submitBtn.classList.add('bg-emerald-600');
+              }
+              form.reset();
+
+              // Restore button after delay
+              setTimeout(() => {
+                isSubmitting = false;
+                if (submitBtn) {
+                  submitBtn.disabled = false;
+                  submitBtn.classList.remove('opacity-80', 'cursor-not-allowed', 'bg-emerald-600');
+                  submitBtn.classList.add('bg-gradient-to-r', 'from-brand-primary', 'to-brand-cyan');
+                }
+                if (submitText) submitText.textContent = 'Submit Project Message';
+                if (submitIcon) {
+                  submitIcon.className = 'material-symbols-outlined text-lg';
+                  submitIcon.textContent = 'send';
+                }
+              }, 4000);
+
+            } else {
+              // Error State
+              isSubmitting = false;
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+              }
+              if (submitText) submitText.textContent = 'Submit Project Message';
+              if (submitIcon) {
+                submitIcon.className = 'material-symbols-outlined text-lg';
+                submitIcon.textContent = 'send';
+              }
+
+              const errorMsg = (resultData && resultData.error)
+                ? resultData.error
+                : (networkError
+                  ? 'Unable to connect to the backend server. Please verify the Flask server is running (python app.py).'
+                  : 'An error occurred while submitting your message. Please try again.');
+
+              if (errorBanner) {
+                if (errorText) errorText.textContent = errorMsg;
+                errorBanner.classList.remove('hidden');
+              }
+
+              if (resultData && resultData.fields) {
+                Object.keys(resultData.fields).forEach(fieldKey => {
+                  const target = fields.find(f => f.name === fieldKey);
+                  if (target) setFieldError(target, resultData.fields[fieldKey]);
+                });
+              }
+            }
+          });
+        }
+      })();
+      // ----------------------------------------------------
+      // 4. CENTRALIZED PROJECT GALLERY & LIGHTBOX CONTROLLER
+      // ----------------------------------------------------
+      window.projectGalleryImages = [
+        { src: 'bus01.jpeg', alt: 'INOUTX College Bus Gate Monitoring (KRCT Campus)' },
+        { src: '01.png', alt: 'INOUTX Web Interface & Live Fleet Monitoring Dashboard' },
+        { src: 'team-asim.png', alt: 'INOUTX Engineering Team Member Abdul Asim M' },
+        { src: 'team-chris.png', alt: 'INOUTX Engineering Team Member Abishek Christopher R' },
+        { src: 'bus02.jpeg', alt: 'INOUTX College Bus Gate Monitoring (KRCE Campus)' },
+        { src: 'team-afridi.png', alt: 'INOUTX Engineering Team Member Afridi Mohamed J' }
+      ];
+
+      const lightbox = document.getElementById('gallery-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const closeBtn = document.getElementById('close-lightbox');
+
+      if (lightbox && lightboxImg) {
+        document.querySelectorAll('.gallery-tile').forEach(tile => {
+          tile.addEventListener('click', () => {
+            const img = tile.querySelector('img');
+            const caption = tile.getAttribute('data-caption') || (img ? img.alt : '');
+            if (img) {
+              lightboxImg.src = img.src;
+              lightboxImg.alt = img.alt;
+              if (lightboxCaption) lightboxCaption.textContent = caption;
+              lightbox.classList.remove('hidden', 'pointer-events-none');
+              requestAnimationFrame(() => {
+                lightbox.classList.remove('opacity-0');
+                lightbox.classList.add('opacity-100');
+              });
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+
+        const closeGalleryModal = () => {
+          lightbox.classList.remove('opacity-100');
+          lightbox.classList.add('opacity-0', 'pointer-events-none');
           setTimeout(() => {
-            if (contactResponseMsg) {
-              contactResponseMsg.classList.remove('hidden');
-            }
-            if (contactSubmitBtn) {
-              contactSubmitBtn.innerHTML = `<span>Message Sent Successfully!</span>`;
-              contactSubmitBtn.classList.add('bg-emerald-600');
-            }
-            contactForm.reset();
-          }, 600);
+            lightbox.classList.add('hidden');
+            lightboxImg.src = '';
+            document.body.style.overflow = '';
+          }, 200);
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeGalleryModal);
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop')) {
+            closeGalleryModal();
+          }
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+            closeGalleryModal();
+          }
         });
       }
     });
   </script>
+
+  <!-- Interactive Project Gallery Lightbox Modal -->
+  <div id="gallery-lightbox"
+    class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-opacity duration-300 opacity-0 pointer-events-none lightbox-backdrop"
+    role="dialog" aria-modal="true">
+    <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+      <button id="close-lightbox"
+        class="absolute -top-12 right-0 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center"
+        aria-label="Close modal">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      <div
+        class="overflow-hidden rounded-2xl bg-slate-900 border border-white/15 shadow-2xl flex items-center justify-center max-h-[78vh] w-full">
+        <img id="lightbox-img" src="" alt="" class="max-h-[78vh] w-auto max-w-full object-contain" />
+      </div>
+      <p id="lightbox-caption" class="mt-3.5 text-center text-xs sm:text-sm text-blue-100/90 font-medium px-4"></p>
+    </div>
+  </div>
 </body>
 
 </html>
