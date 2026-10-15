@@ -1,0 +1,22 @@
+# Secrets & Environment Variables
+.env
+*.env
+!.env.example
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+
+# Temporary / testing artifacts
+chrome_*.png
+test_*.png
+test_*.webm
+*.tmp
